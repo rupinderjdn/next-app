@@ -8,13 +8,11 @@ interface User {
   email: string; 
 }
 
-interface Props {
-    searchParams: {
-        sortName: string
-    }
-}
 
-const page = async ({searchParams: {sortName}}: Props) => {
+
+type SearchParams = Promise<{ sortName: string }>;
+const page = async ({searchParams }:{searchParams : SearchParams} ) => {
+  const { sortName } = await searchParams;
   const res = await fetch('https://jsonplaceholder.typicode.com/users' ,{
     cache: 'no-store',
     // next: {

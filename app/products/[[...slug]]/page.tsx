@@ -1,23 +1,17 @@
-import React from 'react'
+import React from 'react';
 
+type Params = Promise<{ slug?: string[] }>;
 
-interface Props {
-    params: {
-        slug: string[]
-    },
-    searchParams: {
-        sort: string
-    }
-}
+type SearchParams = Promise<{ sort?: string }>;
 
-const ProductPage = ({params: {slug}, searchParams: {sort}}: Props) => {
+export default async function ProductPage({ params, searchParams }: { params: Params; searchParams : SearchParams }) {
+  const { slug } = await params;
+  const { sort } = await searchParams;
   return (
     <div>
       <h1>Product Page</h1>
-      <p>Slug: {slug}</p>
-      <p>Sort: {sort}</p>
+      <p>Slug: {slug ? slug.join(', ') : 'No slug'}</p>
+      <p>Sort: {sort ?? 'No sorting applied'}</p>
     </div>
-  )
+  );
 }
-
-export default ProductPage

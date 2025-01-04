@@ -1,13 +1,10 @@
 import { notFound } from 'next/navigation';
 import React from 'react'
 
-interface Props {
-    params: {
-        id: number
-    }
-}
 
-const UserDetailPage = ({params: {id}}: Props) => {
+type Params = Promise<{ id: number }>;
+const UserDetailPage = async  ({params }: {params: Params }) => {
+  const { id } = await params;
   if(id > 10) {
     notFound();
   }

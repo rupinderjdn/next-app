@@ -2,7 +2,7 @@
 import { useRouter } from 'next/navigation';
 import React from 'react'
 
-const newUserPage = () => {
+const NewUserPage = () => {
   const router = useRouter();
 
 
@@ -20,4 +20,4 @@ const newUserPage = () => {
   )
 }
 
-export default newUserPage
+export default NewUserPage

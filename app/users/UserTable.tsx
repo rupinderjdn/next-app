@@ -5,7 +5,7 @@ import React from 'react'
 
 interface User {
     id: number;
-    name: string;
+    name: string; 
     email: string; 
   }
 
@@ -22,8 +22,8 @@ const UserTable = async ({sortName}: Props) => {
         // }
       })
     const users: User[] = await res.json()
-
-    const sortedUsers = users.sort((a, b) => {
+    // console.log(users);
+    const sortedUsers = await users?.sort((a, b) => {
         if (sortName === 'asc') {
             return a.name.localeCompare(b.name)
         } else if (sortName === 'desc') {
