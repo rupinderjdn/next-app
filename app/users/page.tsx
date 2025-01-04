@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import Link from 'next/link'
 import UserTable from './UserTable';
 
@@ -24,13 +24,17 @@ const page = async ({searchParams: {sortName}}: Props) => {
   const users: User[] = await res.json()
 
   return (
-    <div>
+    <>
       <h1>Users</h1>
       <p>{new Date().toLocaleTimeString()}</p>
       <Link href="/users/new">New User</Link>
+     <Suspense fallback={<div>Loading...</div>}>
+
       <UserTable sortName={sortName} />
-    </div>
+     </Suspense>
+    </>
   )
 }
 
 export default page
+ 
