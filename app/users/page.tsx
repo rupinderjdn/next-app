@@ -8,7 +8,13 @@ interface User {
   email: string; 
 }
 
-const page = async () => {
+interface Props {
+    searchParams: {
+        sortName: string
+    }
+}
+
+const page = async ({searchParams: {sortName}}: Props) => {
   const res = await fetch('https://jsonplaceholder.typicode.com/users' ,{
     cache: 'no-store',
     // next: {
@@ -22,7 +28,7 @@ const page = async () => {
       <h1>Users</h1>
       <p>{new Date().toLocaleTimeString()}</p>
       <Link href="/users/new">New User</Link>
-      <UserTable  />
+      <UserTable sortName={sortName} />
     </div>
   )
 }
